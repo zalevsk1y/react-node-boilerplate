@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import configureStore from '../../redux/configureStore';
-import App from '../../client/App';
+import App from '../../client/container/App';
 
 export default (initialState) => {
   const store = configureStore(initialState);

@@ -1,11 +1,13 @@
-import { REQUEST_POSTS, RECEIVE_POSTS } from "../actions";
+import { REQUEST_TRANSACTIONS, RECEIVE_TRANSACTIONS, RECEIVE_BALANCE } from "../actions";
 
-function mainReducer(state = { isFetching: false, posts: [] }, action) {
+function mainReducer(state = { isFetching: false,balance:0, transactions: [] }, action) {
   switch (action.type) {
-    case REQUEST_POSTS:
+    case REQUEST_TRANSACTIONS:
       return { ...state, isFetching: true };
-    case RECEIVE_POSTS:
-      return { ...state, isFetching: false, posts: action.posts };
+    case RECEIVE_TRANSACTIONS:
+      return { ...state, isFetching: false, transactions: action.transactions };
+    case RECEIVE_BALANCE:
+      return {...state,balance:action.balance}
     default:
       return state;
   }

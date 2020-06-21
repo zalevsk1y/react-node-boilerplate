@@ -7,6 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 
 
+
 const outputDirectory = 'client-dist/';
 
 module.exports = (env, args) => {
@@ -14,7 +15,7 @@ module.exports = (env, args) => {
   return {
     mode: isDev ? 'development' : 'production',
     context: path.resolve(__dirname, 'src', 'client'),
-    entry: ['./App.js', './app.css'],
+    entry: ['./index.js', './app.css'],
     output: {
       path: path.join(__dirname, outputDirectory),
       filename: './js/main[hash].js',
@@ -60,14 +61,14 @@ module.exports = (env, args) => {
       new CleanWebpackPlugin([outputDirectory]),
       new HtmlWebpackPlugin({
         template: './index.html',
-        filename: path.resolve(__dirname, 'client-dist', 'index.html'),
+        filename: path.resolve(__dirname, 'public', 'index.html'),
       }),
       new ManifestPlugin({
         fileName: path.resolve(__dirname, 'bundle-names-manifest.json'),
       }),
       new MiniCssExtractPlugin({
         filename: './css/[name][hash].css',
-        publicPath: path.resolve(__dirname, outputDirectory, 'css'),
+        publicPath: './public/css'
       })
     ],
   };

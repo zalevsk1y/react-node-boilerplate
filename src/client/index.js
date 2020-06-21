@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './container/App';
+import { Provider } from 'react-redux';
+import configureStore from '../redux/configureStore';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store=configureStore({isFetching:false,transactions:[]});
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
