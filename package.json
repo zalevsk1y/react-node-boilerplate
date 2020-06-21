@@ -4,19 +4,23 @@
   "description": "Boilerplate to build a full stack web application with React server side rendering",
   "main": "src/server/index.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "npm run build && node src/server/index.js",
+    "build": "webpack --config webpack.config.js --mode production",
+    "start": "npm run dev && npm run server-build && node server-dist/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "server": "nodemon src/server/index.js"
-    
+    "server": "nodemon src/server/index.js",
+    "dev": "webpack --config webpack.config.js --mode development",
+    "server-build": "webpack --config webpack.server.js --mode development"
   },
   "author": "Evgeniy Zalevskiy",
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "express": "^4.16.3",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -26,7 +30,11 @@
     "babel-eslint": "^10.0.0",
     "babel-loader": "^8.0.0",
     "clean-webpack-plugin": "^1.0.0",
-    "concurrently": "^4.0.0",
+    "webpack-shell-plugin": "^0.5.0",
+    "webpack-manifest-plugin": "^2.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "terser-webpack-plugin": "^3.0.6",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "css-loader": "^2.0.0",
     "eslint": "^5.0.0",
     "eslint-config-airbnb": "^17.0.0",
@@ -40,6 +48,7 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.5.0",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.3"
+    "webpack-dev-server": "^3.1.3",
+    "webpack-node-externals": "^1.7.2"
   }
 }

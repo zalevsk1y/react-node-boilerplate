@@ -1,17 +1,14 @@
-const React =require("React");  
-const ReactDOMServer=require("react-dom/server");
-const {Provider}=require("react-redux");
-const configureStore=require("../redux/configureStore.js");
-const App=require("../client/App.js");
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { Provider } from 'react-redux';
+import configureStore from '../../redux/configureStore';
+import App from '../../client/App';
 
-module.exports.render=(initialState)=>{
-    const store=configureStore(initialState);
-    const content=ReactDOMServer.renderToString(
-        <Provider store={store}>
-            <App />
-        </Provider> 
-    );
-    const preloadedState=store.getState();
-    return {preloadedState, content};
-
-}
+export default (initialState) => {
+  const store = configureStore(initialState);
+  const content = ReactDOMServer.renderToString(
+    React.createElement(Provider, { store }, [React.createElement(App, { key: 0 })])
+  );
+  const preloadedState = store.getState();
+  return { preloadedState, content };
+};
